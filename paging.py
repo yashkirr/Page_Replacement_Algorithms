@@ -3,7 +3,7 @@
 # CSC3002F
 # FIFO, LRU, OPT Page Replacement Algorithms
 # Usage: python paging.py [Number of Frames] [Number of Pages]
-# Usage example: python paging.py 5 64
+# Usage example: python3 paging.py 5 64
 
 import queue
 import random
