@@ -1,4 +1,4 @@
-# Yashkir Ramsamy - RMSYAS003
+# Yashkir Ramsamy
 # Assignment 3
 # CSC3002F
 
@@ -56,11 +56,37 @@ def LRU(size, pages):
 
 
 def OPT(size, pages):
-    return
+    frameSize = size
+    pagesSeq = pages
+    memoryQueue = deque([])
+    fault = 0
+    i=0
+    for page in pagesSeq:
+        if page not in memoryQueue and len(memoryQueue)<frameSize: # memory empty or has empty slots
+            memoryQueue.append(page)
+            fault += 1
+        elif page in memoryQueue: # page in memory
+            pass
+        elif page not in memoryQueue and len(memoryQueue) == frameSize: # memory full and page replacement occurs
+            fault += 1
+            listMem = list(memoryQueue)
+            maxVal = 0
+            for item in listMem:
+                distance = pagesSeq.find(item,i)
+                if distance == -1:
+                    distance = len(pagesSeq)*1000
+                if maxVal < distance:
+                    maxVal = distance
+                    itemTR = item
+            memoryQueue.remove(itemTR)
+            memoryQueue.append(page)
+        i+=1
 
+    return fault
 
 def processSequence(numPages):
-    return str(random.randint(0, numPages * 1000000000000000000))[0:numPages + 1]
+    #TODO Fix numpages, numpages * c =/= character length
+    return str(random.randint(0, numPages * 10000000000000000000000000000000000000000000000000000000000000000))[0:numPages + 1]
 
 
 if __name__ == "__main__":
